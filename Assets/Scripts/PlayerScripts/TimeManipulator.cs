@@ -46,4 +46,14 @@ public class TimeManipulator : MonoBehaviour
             pastVersion.GetComponent<PlayerPast>().PlayTheRecord(movements);
         }
     }
+
+    public void ResetTimeManipulation()
+    {
+        isManipulatable = true;
+        isPresent = true;
+        isRecording = false;
+        movements.Clear();
+        pastVersion.SetActive(false);
+        lightAnimator.ResetTrigger("ToPast");
+    }
 }
