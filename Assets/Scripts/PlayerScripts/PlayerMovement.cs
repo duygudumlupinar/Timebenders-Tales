@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] LayerMask groundLayer;
     [SerializeField] Transform groundCheck;
 
-    public float speed = 5f;
+    public float speed = 3f;
     public float jumpPower = 5f;
 
     private Rigidbody rb;
@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        //animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (!(verticalMovement == 0f && horizontalMovement == 0f))
         {
-            var tanangle = Mathf.Atan2(horizontalMovement, verticalMovement) * Mathf.Rad2Deg;
+            var tanangle = Mathf.Atan2(-horizontalMovement, -verticalMovement) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0, tanangle, 0);
         }
         
@@ -49,14 +49,14 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        //if (!(verticalMovement == 0f && horizontalMovement == 0f))
-        //{
-        //    animator.SetBool("isWalking", true);
-        //}
-        //else
-        //{
-        //    animator.SetBool("isWalking", false);
-        //}
+        if ((verticalMovement == 0f && horizontalMovement == 0f))
+        {
+            animator.SetBool("isWalking", true);
+        }
+        else
+        {
+            animator.SetBool("isWalking", false);
+        }
     }
 
     bool CheckIfGrounded()
