@@ -34,6 +34,7 @@ public class TimeManipulator : MonoBehaviour
         //Actions in the present time are recorded
         if (Input.GetKeyDown(KeyCode.R) && isPresent)
         {
+            lightAnimator.SetTrigger("Recording");
             isRecording = true;
         }
         if (isRecording)
@@ -54,6 +55,6 @@ public class TimeManipulator : MonoBehaviour
         isRecording = false;
         movements.Clear();
         pastVersion.SetActive(false);
-        lightAnimator.ResetTrigger("ToPast");
+        lightAnimator.SetTrigger("Restart");
     }
 }

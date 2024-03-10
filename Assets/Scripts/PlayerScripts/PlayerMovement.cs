@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        if ((verticalMovement == 0f && horizontalMovement == 0f))
+        if (!(verticalMovement == 0f && horizontalMovement == 0f))
         {
             animator.SetBool("isWalking", true);
         }
