@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EndPoint : MonoBehaviour
 {
@@ -8,7 +9,13 @@ public class EndPoint : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            print("Level Completed");
+            StartCoroutine(GoToLevelSelectionScreen());
         }
+    }
+
+    IEnumerator GoToLevelSelectionScreen()
+    {
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene("SampleScene");
     }
 }

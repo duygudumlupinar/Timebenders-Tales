@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MirrorControllerLight : MonoBehaviour
@@ -10,8 +11,16 @@ public class MirrorControllerLight : MonoBehaviour
     [SerializeField] private Material mirrorMaterial;
     [SerializeField] private GameObject endPoint;
 
+    private AudioSource lightClick;
+
+    private void Start()
+    {
+        lightClick = GetComponent<AudioSource>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
+        lightClick.Play();
         _light.enabled = false;
         mirror.GetComponent<MeshRenderer>().material = flatMaterial;
         mirror.GetComponent<Collider>().enabled = false;
